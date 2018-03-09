@@ -56,7 +56,9 @@ ODBC, .NET, Noede.js, Python, R, ESQLC and OLE DB.
 
 ```
 char   *MyLocalConnStr = 
-"DRIVER={IBM INFORMIX ODBC DRIVER (64-bit)};HOST=ec2-54-196-209-131.compute-1.amazonaws.com;SERVER=ol_aws; \
-SERVICE=9089;PROTOCOL=olsocssl;DATABASE=db1;UID=dbuser1;PWD=mypwd123;CLIENT_LOCALE=en_us.8859-1;DB_LOCALE=en_us.utf8";
+
+"DRIVER={IBM INFORMIX ODBC DRIVER (64-bit)};HOST=ec2-54-196-209-131.compute-1.amazonaws.com;\
+SERVER=ol_aws;SERVICE=9089;PROTOCOL=olsocssl;DATABASE=db1;UID=dbuser1;PWD=mypwd123;\
+CLIENT_LOCALE=en_us.8859-1;DB_LOCALE=en_us.utf8";
 ```
 
