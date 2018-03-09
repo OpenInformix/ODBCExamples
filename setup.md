@@ -43,7 +43,7 @@ SSL_KEYSTORE_STH  c:\informix\etc\ssl\client.sth
 ```
 
 
-##### Windows: $INFORMIXDIR/etc/conssl.cfg
+##### Linux: $INFORMIXDIR/etc/conssl.cfg
 ```
 SSL_KEYSTORE_FILE $INFORMIXDIR/etc/ssh/client.kdb
 SSL_KEYSTORE_STH  $INFORMIXDIR/etc/ssh/client.sth
