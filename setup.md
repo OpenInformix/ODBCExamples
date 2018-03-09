@@ -54,7 +54,7 @@ SSL_KEYSTORE_STH  $INFORMIXDIR/etc/ssh/client.sth
 Here is a sample connection string that you may use it for ODBC application to connect to the database. The same setup is applicable for application using these the folloing Informix drivers   
 ODBC, .NET, Noede.js, Python, R, ESQLC and OLE DB.
 
-```
+```C
 char   *MyLocalConnStr = 
 
 "DRIVER={IBM INFORMIX ODBC DRIVER (64-bit)};HOST=ec2-54-196-209-131.compute-1.amazonaws.com;\
