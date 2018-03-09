@@ -1,7 +1,8 @@
 
 
 ### Scenario: Connecting to a Informix server on AWS
-* [Getting started AWS](https://www.hcltech.com/products-and-platforms/informix/informix-AWS/getting-started)
+
+Please see the official page for more up-to-date information and it is [Getting started AWS](https://www.hcltech.com/products-and-platforms/informix/informix-AWS/getting-started)   
 Let us consider a scenario we would like to run the sample application against an Informix server provisioned from AWS.  
 
 - The database server may not have created a user that can be shared with applications.
