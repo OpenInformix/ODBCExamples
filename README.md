@@ -25,6 +25,19 @@ SSH to the terminal system at AWS and do the following setup by using dbaccess
 ```bash
 # The 'my-private-key1.pem' is the private key file you have created for your AWS
 ssh -i ~/.ssh/my-private-key1.pem centos@ec2-54-196-209-131.compute-1.amazonaws.com
+
+# Copy the certificate to the user folder that can be accessed later 
+cd  /home/centos
+sudo cp /home/informix/client_ssl/client.kdb .
+sudo cp /home/informix/client_ssl/client.sth .
+sudo chown centos client.kdb client.sth
+
+# from remote (client) computer later you may scp those certificates as centos user
+scp -i ~/.ssh/my-private-key1.pem  centos@ec2-54-196-209-131.compute-1.amazonaws.com:/home/centos/client.* .
+```
+
+### DB Server Setup
+```bash
 sudo -u informix bash
 dbaccess 
 
@@ -41,6 +54,13 @@ Copy the following two files to your client computer
 ```bash
 /home/informix/client_ssl/client.kdb
 /home/informix/client_ssl/client.sth
+
+# it has been copied to /home/centos
+scp -i ~/.ssh/my-private-key1.pem  centos@ec2-54-196-209-131.compute-1.amazonaws.com:/home/centos/client.* .
+
+# to avoid security risk, once after copied the certificate files to the client computer, you may delete 
+rm /home/centos/client.kdb
+rm /home/centos/client.sth
 ```
 
 
