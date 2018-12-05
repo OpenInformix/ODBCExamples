@@ -1,0 +1,16 @@
+export PS1="[\u@\h:\w]$ "
+
+export INFORMIXDIR=/work/csdk/
+export INFORMIXSERVER=ids5
+export INFORMIXSQLHOSTS=/work/myids/sqlhosts
+
+export ODBCINI=/work/odbc/odbc.ini
+
+export LD_LIBRARY_PATH=${INFORMIXDIR}/lib:${INFORMIXDIR}/lib/esql:${INFORMIXDIR}/lib/cli:/usr/lib
+export PATH=$INFORMIXDIR/bin:$PATH
+
+#export CLIENT_LOCALE=en_us.8859-1
+#export DB_LOCALE=en_us.8859-1
+
+alias ls='ls --color=none'
+

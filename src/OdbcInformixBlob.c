@@ -77,29 +77,44 @@ int main( int argc, char *argv[] )
     //char *FileNameOrg =  "/work/run/my_blob.txt";
 	
 	
-    SQLHENV         henv=NULL;
-    SQLHDBC         hdbc=NULL;
+    SQLCHAR     ConnStrIn[1024] = "DSN=odbc_demo";
+    SQLHANDLE   henv = NULL;
+    SQLHANDLE   hdbc = NULL;
+    int         rc = 0;
 
-    SQLRETURN       rc = 0;
-    SQLCHAR         ConnStrIn[1024]="DSN=odbc1";
-    SQLCHAR         *MyLocalConnStr=NULL;
+    char   *MyLocalConnStr = "DRIVER={IBM INFORMIX ODBC DRIVER};SERVER=srv1;DATABASE=xb1;HOST=xyz.abc.com;PROTOCOL=onsoctcp;SERVICE=5550;UID=user1;PWD=xyz;";
 
-    if( argc == 2 )
+    if (argc == 1)
     {
-        sprintf( (char *)ConnStrIn, "DSN=%s", argv[1] );
+        if (sizeof(int *) == 8)  // 64bit application 
+        {
+            // With SSL 
+            // DB2CLI WITH SSL   = "DATABASE=db1;UID=user1;PWD=xyz;HOSTNAME=x.x.63.222;port=9091;SECURITY=SSL;"  
+            // MyLocalConnStr = "DRIVER={IBM INFORMIX ODBC DRIVER (64-bit)};HOST=x.x.x.222;SERVER=informix;SERVICE=9089;PROTOCOL=olsocssl;DATABASE=db1;UID=user1;PWD=xyz;CLIENT_LOCALE=en_us.8859-1;DB_LOCALE=en_us.utf8";
+            MyLocalConnStr = "DRIVER={IBM INFORMIX ODBC DRIVER (64-bit)};SERVER=ids5;DATABASE=db1;HOST=x.x.x.x;PROTOCOL=onsoctcp;SERVICE=5555;UID=user1;PWD=xyz;";
+        }
+        strcpy((char *)ConnStrIn, MyLocalConnStr);
+
+    }
+    else if (argc == 2)
+    {
+        strcpy( (char *)ConnStrIn,  argv[1] );
     }
     else
     {
-        //Infrastructure to test this code outside of UTM by supplying your own connection string
-        MyLocalConnStr = "DRIVER={IBM INFORMIX ODBC DRIVER};SERVER=ids5;DATABASE=db1;HOST=x.x.x.x;PROTOCOL=onsoctcp;SERVICE=5555;UID=user1;PWD=xyz;";
+        strcpy((char *)ConnStrIn, MyLocalConnStr);
 
-        if( sizeof (int *) == 8 )
+        if (0)
         {
-            MyLocalConnStr = "DRIVER={IBM INFORMIX ODBC DRIVER (64-bit)};SERVER=ids5;DATABASE=db1;HOST=x.x.x.x;PROTOCOL=onsoctcp;SERVICE=5555;UID=user1;PWD=xyz;";
+            printf("\n Usage option is :");
+            printf("\n %s    <Connection String>", argv[0]);
+            printf("\n Example :");
+            printf("\n %s   \"DSN=MyOdbcDsnName; uid=MyUserName; pwd=MyPassword;\" ", argv[0]);
+            printf("\n OR ");
+            printf("\n %s  \"%s\" ", argv[0], MyLocalConnStr);
+            printf("\n\n");
+            exit(0);
         }
-
-        //MyLocalConnStr="DSN=ids0db1";
-        strcpy( (char *)ConnStrIn, MyLocalConnStr );
     }
 
     rc = SQLAllocHandle( SQL_HANDLE_ENV, SQL_NULL_HANDLE, &henv );

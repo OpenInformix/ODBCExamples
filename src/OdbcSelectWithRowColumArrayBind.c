@@ -57,33 +57,44 @@ void GetDiagRec(SQLRETURN rc, SQLSMALLINT htype, SQLHANDLE hndl, char *szMsgTag)
 
 int main(long argc, char* argv[])
 {
-    SQLHENV         henv = NULL;
-    SQLHDBC         hdbc = NULL;
+    SQLCHAR     ConnStrIn[1024] = "DSN=odbc_demo";
+    SQLHANDLE   henv = NULL;
+    SQLHANDLE   hdbc = NULL;
+    int         rc = 0;
 
-    SQLRETURN       rc = 0;
-    SQLCHAR         ConnStrIn[1024] = "DSN=odbc1";
+    char   *MyLocalConnStr = "DRIVER={IBM INFORMIX ODBC DRIVER};SERVER=srv1;DATABASE=xb1;HOST=xyz.abc.com;PROTOCOL=onsoctcp;SERVICE=5550;UID=user1;PWD=xyz;";
 
     if (argc == 1)
     {
-        char *MyLocalConnStr = "DRIVER={IBM INFORMIX ODBC DRIVER};SERVER=myids1;DATABASE=db1;HOST=myhost.ibm.com;PROTOCOL=onsoctcp;SERVICE=5550;UID=user1;PWD=xyz;";
-
-        if( sizeof (int *) == 8 )
+        if (sizeof(int *) == 8)  // 64bit application 
         {
-            MyLocalConnStr = "DRIVER={IBM INFORMIX ODBC DRIVER (64-bit)};SERVER=myids1;DATABASE=db1;HOST=myhost.ibm.com;PROTOCOL=onsoctcp;SERVICE=5555;UID=user1;PWD=xyz;";
+            // With SSL 
+            // DB2CLI WITH SSL   = "DATABASE=db1;UID=user1;PWD=xyz;HOSTNAME=x.x.63.222;port=9091;SECURITY=SSL;"  
+            // MyLocalConnStr = "DRIVER={IBM INFORMIX ODBC DRIVER (64-bit)};HOST=x.x.x.222;SERVER=informix;SERVICE=9089;PROTOCOL=olsocssl;DATABASE=db1;UID=user1;PWD=xyz;CLIENT_LOCALE=en_us.8859-1;DB_LOCALE=en_us.utf8";
+            MyLocalConnStr = "DRIVER={IBM INFORMIX ODBC DRIVER (64-bit)};SERVER=ids5;DATABASE=db1;HOST=x.x.x.x;PROTOCOL=onsoctcp;SERVICE=5555;UID=user1;PWD=xyz;";
         }
-
         strcpy((char *)ConnStrIn, MyLocalConnStr);
+
     }
     else if (argc == 2)
     {
-        // Add buffer overflow protection if taken into production
-        sprintf((char *)ConnStrIn, "DSN=%s", argv[1]);
+        strcpy( (char *)ConnStrIn,  argv[1] );
     }
     else
     {
-        printf("\n Unknown command line option!");
-        printf("\n");
-        return(0);
+        strcpy((char *)ConnStrIn, MyLocalConnStr);
+
+        if (0)
+        {
+            printf("\n Usage option is :");
+            printf("\n %s    <Connection String>", argv[0]);
+            printf("\n Example :");
+            printf("\n %s   \"DSN=MyOdbcDsnName; uid=MyUserName; pwd=MyPassword;\" ", argv[0]);
+            printf("\n OR ");
+            printf("\n %s  \"%s\" ", argv[0], MyLocalConnStr);
+            printf("\n\n");
+            exit(0);
+        }
     }
 
 

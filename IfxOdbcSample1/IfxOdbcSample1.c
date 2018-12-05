@@ -48,7 +48,19 @@ int main(int argc, char *argv[])
             // DB2CLI WITH SSL   = "DATABASE=db1;UID=user1;PWD=xyz;HOSTNAME=x.x.63.222;port=9091;SECURITY=SSL;"  
             // MyLocalConnStr = "DRIVER={IBM INFORMIX ODBC DRIVER (64-bit)};HOST=x.x.x.222;SERVER=informix;SERVICE=9089;PROTOCOL=olsocssl;DATABASE=db1;UID=user1;PWD=xyz;CLIENT_LOCALE=en_us.8859-1;DB_LOCALE=en_us.utf8";
             MyLocalConnStr = "DRIVER={IBM INFORMIX ODBC DRIVER (64-bit)};SERVER=ids5;DATABASE=db1;HOST=x.x.x.x;PROTOCOL=onsoctcp;SERVICE=5555;UID=user1;PWD=xyz;";
-        }
+			MyLocalConnStr = "DRIVER={IBM INFORMIX ODBC DRIVER (64-bit)};HOST=23.100.27.67;SERVER=ol_azure;SERVICE=9089;PROTOCOL=olsocssl;DATABASE=db1;UID=dbuser1;PWD=blue4you;CLIENT_LOCALE=en_us.8859-1;DB_LOCALE=en_us.utf8";
+
+			//j1- 
+			//MyLocalConnStr = "DRIVER={IBM INFORMIX ODBC DRIVER (64-bit)};HOST=23.100.27.67;SERVER=ol_azure;SERVICE=9088;PROTOCOL=olsoctcp;DATABASE=db1;UID=dbuser1;PWD=blue4you;CLIENT_LOCALE=en_us.8859-1;DB_LOCALE=en_us.utf8";
+
+			// j4
+			MyLocalConnStr = "DRIVER={IBM INFORMIX ODBC DRIVER (64-bit)};HOST=23.96.6.231;SERVER=ol_azure;SERVICE=9088;PROTOCOL=olsoctcp;DATABASE=db1;UID=dbuser1;PWD=blue4you;CLIENT_LOCALE=en_us.8859-1;DB_LOCALE=en_us.utf8";
+			//MyLocalConnStr = "DRIVER={IBM INFORMIX ODBC DRIVER (64-bit)};HOST=23.100.27.67;SERVER=ol_azuressl;SERVICE=9089;PROTOCOL=olsocssl;DATABASE=db1;UID=dbuser1;PWD=blue4you;CLIENT_LOCALE=en_us.8859-1;DB_LOCALE=en_us.utf8";
+
+			MyLocalConnStr = "DRIVER={IBM INFORMIX ODBC DRIVER (64-bit)};HOST=192.168.56.5;SERVER=ids0;SERVICE=9088;PROTOCOL=onsoctcp;DATABASE=db1;UID=informix;PWD=Blue4You,CLIENT_LOCALE=en_us.8859-1;DB_LOCALE=en_us.utf8;";
+			// MyLocalConnStr = "DRIVER={IBM INFORMIX ODBC DRIVER (64-bit)};HOST=34.226.147.176;SERVER=ol_aws;SERVICE=9088;PROTOCOL=onsoctcp;DATABASE=db1;UID=dbuser1;PWD=mypwd123,CLIENT_LOCALE=en_us.8859-1;DB_LOCALE=en_us.utf8;";
+			MyLocalConnStr = "DRIVER={IBM INFORMIX ODBC DRIVER (64-bit)};HOST=192.168.56.5;SERVER=ids0;SERVICE=5550;PROTOCOL=onsoctcp;DATABASE=db1;UID=informix;PWD=Blue4You,CLIENT_LOCALE=en_us.8859-1;";
+		}
         strcpy((char *)ConnStrIn, MyLocalConnStr);
 
     }

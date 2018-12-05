@@ -1,0 +1,28 @@
+# nmake -f makefile.nt
+
+!include <win32.mak>
+
+ODBC_LIBS  = odbc32.lib odbccp32.lib
+XODBC_LIBS = $(INFORMIXDIR)\lib\iclit09b.lib
+ODBC_INCL  = $(INFORMIXDIR)\incl\cli
+ODBC_CFLAGS= /MD /D_CRT_SECURE_NO_DEPRECATE /D_CRT_NON_CONFORMING_SWPRINTFS  /D_CRT_NONSTDC_NO_DEPRECATE /I"$(ODBC_INCL)"
+
+cflags = $(ccommon) -D_WINNT 
+
+# All targets
+IfxOdbcSample1 = IfxOdbcSample1.exe
+OdbcArrayInsertCBinding = OdbcArrayInsertCBinding.exe
+OdbcSelectWithRowColumArrayBind = OdbcSelectWithRowColumArrayBind.exe
+OdbcInformixBlob = OdbcInformixBlob.exe
+
+TARGET    = $(IfxOdbcSample1) $(OdbcArrayInsertCBinding) \
+            $(OdbcSelectWithRowColumArrayBind) $(OdbcInformixBlob)
+
+all: $(TARGET)
+
+
+.c.exe:
+	$(cc) $(cflags) $(cdebug) $(ODBC_CFLAGS) $*.c
+	$(link) $(conlflags) $(ldebug) $*.obj $(ODBC_LIBS) $(conlibs)
+	if exist $*.exe.manifest mt.exe -manifest $*.exe.manifest -outputresource:$*.exe;1
+

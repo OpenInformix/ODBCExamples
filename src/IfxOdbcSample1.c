@@ -33,7 +33,7 @@ void  MyServerSetup(SQLHDBC hdbc);
 
 int main(int argc, char *argv[])
 {
-    SQLCHAR     ConnStrIn[1024] = "DSN=odbc1";
+    SQLCHAR     ConnStrIn[1024] = "DSN=odbc_demo";
     SQLHANDLE   henv = NULL;
     SQLHANDLE   hdbc = NULL;
     int         rc = 0;
