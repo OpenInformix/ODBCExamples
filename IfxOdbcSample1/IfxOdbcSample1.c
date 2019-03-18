@@ -100,13 +100,13 @@ int main(int argc, char *argv[])
     rc = SQLDriverConnect(hdbc, NULL, ConnStrIn, SQL_NTS, NULL, 0, NULL, SQL_DRIVER_NOPROMPT);
     if (rc != 0)
     {
-        printf("\n Connection Error (:- \n", rc);
+        printf("\n Connection Error (:- \n");
         GetDiagRec(rc, SQL_HANDLE_DBC, hdbc, "SQLDriverConnect");
         goto Exit;
     }
     else
     {
-        printf("\n Connection Success! \n", rc);
+        printf("\n Connection Success! \n");
     }
 
     if (1)
@@ -170,7 +170,6 @@ void GetDiagRec(SQLRETURN rc, SQLSMALLINT htype, SQLHANDLE hndl, char *szMsgTag)
 
 void  MyServerSetup(SQLHDBC hdbc)
 {
-    char        buff[1024];
     SQLRETURN   rc = 0;
     SQLHSTMT    hstmt = NULL;    int         i = 0;
 
