@@ -1,4 +1,4 @@
-## Informix ODBC Applicatin Examples
+## Informix ODBC Application Examples
 Copyright (c) 2017 OpenInformix. All rights reserved.
 
 Licensed under the Apache License, Version 2.0
